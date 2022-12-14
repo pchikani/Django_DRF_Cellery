@@ -1,0 +1,20 @@
+{% load mathfilters %}
+					{% for item in object.all %}
+					<tr>
+						<td class="col-2"><a class="nav-link p-0" href="{% url 'core:scripedetails' item.scripename.id %}" >{{ item.scripename }}</a></td>
+						<td class="col-1" style="text-align:right;">{{ item.scripename.currprice|addition:randomVal|floatformat:2 }}</td>
+						<td class="col-1" style="text-align:right;">{{ item.quantity }}</td>
+						<td class="col-2" style="text-align:right;">{{ item.buyprice }}</td>
+						<td class="col-2" style="text-align:right;">{{ item.investmentvalue }}</td>
+						{% with currpr=item.scripename.currprice|addition:randomVal %}
+						<td class="col-2" style="text-align:right;">{{ currpr|mul:item.quantity|floatformat:2 }}</td>
+						{% endwith %}
+						{% with profitpr=item.scripename.currprice|addition:randomVal|mul:item.quantity|floatformat:2 %}
+						{% if item.profitloss > 0 %}												
+						<td class="col-2" style="text-align:right; color:#00FF00">{{ profitpr|sub:item.investmentvalue }}({{ profitpr|sub:item.investmentvalue|mul:100|div:item.investmentvalue|floatformat:2 }})</td>
+						{% else %}
+						<td class="col-2" style="text-align:right; color:red">{{ profitpr|sub:item.investmentvalue }}({{ item.percentage }})</td>
+						{% endif %}
+						{% endwith %}
+					</tr>
+					{% endfor %}

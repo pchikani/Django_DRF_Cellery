@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <main>
+    <div class="container p-4">
+		<section class="mb-2 p-0">
+			<!--Section heading-->
+			<h3 class="h4-responsive font-weight-bold text-center text-white my-4 p-1 bg-success">Account Details</h3>
+			<!--Section description-->
+			
+			<div class="row">
+
+				<!--Grid column-->
+				<div class="col-md-2 mb-md-0 mb-2 p-0">
+				</div>
+				<div class="col-md-8 mb-md-0 mb-2 p-0">
+				
+					<form id="account-form" name="account-form" action="/account-details/" method="POST">
+					{% csrf_token %}
+					  <div class="form-group">
+						<label for="username">Username</label>
+						<input type="text" class="form-control" id="username" name="username" readonly value="{{ object.username }}">
+					  </div>
+					  <div class="form-group">
+					  <div class="row">
+						<div class="col">
+						  <label for="NewPassword">New Password</label>
+						  <input type="password" class="form-control" id="NewPassword" name="NewPassword" placeholder="New Password">
+						</div>
+						<div class="col">
+						  <label for="RePassword">Re-Type Password</label>
+						  <input type="password" class="form-control" id="RePassword" name="RePassword" placeholder="Re-Type Password">
+						</div>
+					  </div>
+					  </div>
+					  <div class="form-group">
+					  <div class="row">
+						<div class="col">
+						  <label for="firstname">First Name</label>
+						  {% if object.first_name %}
+						  <input type="text" class="form-control" id="firstname" name="firstname" value="{{ object.first_name }}">
+						  {% else %}
+						  <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First name">
+						  {% endif %}
+						</div>
+						<div class="col">
+						  <label for="lastname">Last Name</label>
+						  {% if object.first_name %}
+						  <input type="text" class="form-control" id="lastname" name="lastname" value="{{ object.last_name }}">
+						  {% else %}
+						  <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last name">
+						  {% endif %}
+						</div>
+					  </div>
+					  </div>
+					  <div class="form-group">
+						<label for="Email">Email address</label>
+						{% if object.email %}
+						<input type="email" class="form-control" id="Email" name="Email" aria-describedby="emailHelp" value="{{ object.email }}">
+						{% else %}
+						<input type="email" class="form-control" id="Email" name="Email" aria-describedby="emailHelp" placeholder="Enter email">
+						{% endif %}
+						<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+					  </div>
+					</form>
+
+					<div class="text-center text-md-left">
+						<a class="btn btn-success" onclick="document.getElementById('account-form').submit();">Update</a>
+						<a class="btn btn-success" href="/home/">Back</a>
+					</div>
+					<div class="status"></div>
+				</div>
+				<!--Grid column-->
+
+			</div>
+
+		</section>
+	<!--Section: Contact v.2-->
+
+    </div>
+  </main>
+
+{% endblock content %}
+
+

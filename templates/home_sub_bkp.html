@@ -1,0 +1,15 @@
+					{% for item in object.all %}
+					<tr>
+						<td class="col-2"><a class="nav-link p-0" href="{% url 'core:scripedetails' item.scripename.id %}" >{{ item.scripename }}</a></td>
+						<td class="col-1" style="text-align:right;">{{ item.scripename.currprice }}</td>
+						<td class="col-1" style="text-align:right;">{{ item.quantity }}</td>
+						<td class="col-2" style="text-align:right;">{{ item.buyprice }}</td>
+						<td class="col-2" style="text-align:right;">{{ item.investmentvalue }}</td>
+						<td class="col-2" style="text-align:right;">{{ item.curvalue }}</td>
+						{% if item.profitloss > 0 %}
+						<td class="col-2" style="text-align:right; color:#00FF00">{{ item.profitloss }}({{ item.percentage }})</td>
+						{% else %}
+						<td class="col-2" style="text-align:right; color:red">{{ item.profitloss }}({{ item.percentage }})</td>
+						{% endif %}
+					</tr>
+					{% endfor %}

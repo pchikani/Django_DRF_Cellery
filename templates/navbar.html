@@ -1,0 +1,69 @@
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar py-1">
+    <div class="container">
+
+      <!-- Brand -->
+      <a class="navbar-brand waves-effect" href="/">
+        <strong class="text-success">MyPortfolio</strong>
+      </a>
+
+      <!-- Collapse -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Links -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Left -->
+        <ul class="navbar-nav navbarSupportedContent mr-auto">
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="/home/">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+		  <li class="nav-item">
+            <a class="nav-link waves-effect" href="/contact-us/">Contact us
+            </a>
+          </li>
+		  <li class="nav-item">
+            <a class="nav-link waves-effect" href="/about/">About
+            </a>
+          </li>
+        </ul>
+
+        <!-- Right -->
+        <ul class="navbar-nav navbarSupportedContent nav-flex-icons">
+          {% if request.user.is_authenticated %}
+		        <li class="nav-item">
+                <a class="nav-link waves-effect" href="{% url 'core:accountDetails' %}">
+			            <span class="clearfix d-none d-sm-inline-block">Welcome</span>
+                  <span class="clearfix d-none d-sm-inline-block" style="color:green;font-weight:bold">{{ user.username }}</span>
+				  <i class="fas fa-caret-down"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link waves-effect" href="{% url 'account_logout' %}">
+			          <i class="fas fa-sign-out-alt"></i>
+                <span class="clearfix d-none d-sm-inline-block"> Logout </span>
+              </a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link waves-effect" href="{% url 'account_login' %}">
+			          <i class="fas fa-sign-in-alt"></i>
+                <span class="clearfix d-none d-sm-inline-block"> Login </span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link waves-effect" href="{% url 'account_signup' %}">
+                <span class="clearfix d-none d-sm-inline-block"> Signup </span>
+              </a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+
+    </div>
+  </nav>

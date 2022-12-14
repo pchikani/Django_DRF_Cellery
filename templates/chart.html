@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<main>
+		<div class="container p-4 m-4">
+			<div id="myGroup">
+				<button class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapseDoughnut" data-parent="#myGroup" aria-expanded="false" aria-controls="collapseDoughnut">
+						<strong>Current Portfolio Allocation:</strong>
+						<i class="fa fa-caret-down"></i>
+				</button>
+				<button class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapseBar" data-parent="#myGroup" aria-expanded="false" aria-controls="collapseBar">
+						<strong>Portfolio Investment Analysis:</strong>
+						<i class="fa fa-caret-down"></i>
+				</button>
+				<button class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapseScripe" data-parent="#myGroup" aria-expanded="false" aria-controls="collapseScripe">
+						<strong>Scripe Price Analysis:</strong>
+						<i class="fa fa-caret-down"></i>
+				</button>
+				<a class="btn btn-success" href="/home/">Back</a>
+				<div class="accordion-group">	
+					<div class="collapse indent" id="collapseDoughnut" data-parent="#myGroup">
+						<canvas id="myChart" ></canvas>
+					</div>
+					
+					<div class="collapse indent" id="collapseBar" data-parent="#myGroup">
+						<canvas id="myBarChart" ></canvas>
+					</div>
+			
+					<div class="collapse" id="collapseScripe" data-parent="#myGroup">
+						<canvas id="myScripeChart" ></canvas>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</main>	
+	
+	
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+	// jquery function
+	$(document).ready(function(){
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: [{%for data in object.all%}'{{data.scripename}}',{%endfor%}], 
+                datasets: [{
+                    label: '# of scripes',
+                    data: [{%for data in object.all%}{{data.curvalue}},{%endfor%}],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)', 
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+		});
+    });
+	
+	
+	
+	// jquery function
+	$(document).ready(function(){
+        var ctx = document.getElementById('myBarChart').getContext('2d');
+        var myBarChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [{%for data in object.all%}'{{data.scripename}}',{%endfor%}], 
+                datasets: [{
+                    label: 'Current Value',
+                    data: [{%for data in object.all%}{{data.curvalue}},{%endfor%}],
+                    backgroundColor: 'violet',
+                    borderColor: 'violet',
+                    borderWidth: 1
+                },
+				{
+					label: 'Investment Value',
+                    data: [{%for data in object.all%}{{data.investmentvalue}},{%endfor%}],
+                    backgroundColor: 'blue',
+                    borderColor: 'blue',
+                    borderWidth: 1
+				
+				},
+				{	
+					label: 'Profit/Loss',
+                    data: [{%for data in object.all%}{{data.profitloss}},{%endfor%}],
+                    backgroundColor: 'green',
+                    borderColor: 'green',
+                    borderWidth: 1
+				}]
+			},
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+		});
+    });
+	
+// jquery function
+	$(document).ready(function(){
+        var ctx = document.getElementById('myScripeChart').getContext('2d');
+        var myScripeChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [{%for data in object.all%}'{{data.scripename}}',{%endfor%}], 
+                datasets: [{
+                    label: 'Current Price',
+                    data: [{%for data in object.all%}{{data.curprice}},{%endfor%}],
+                    backgroundColor: 'violet',
+                    borderColor: 'violet',
+                    borderWidth: 1
+                },
+				{
+					label: 'Buy Price',
+                    data: [{%for data in object.all%}{{data.buyprice}},{%endfor%}],
+                    backgroundColor: 'blue',
+                    borderColor: 'blue',
+                    borderWidth: 1
+				
+				},
+				{	
+					label: 'Percentage Gain/Loss',
+                    data: [{%for data in object.all%}{{data.percentage}},{%endfor%}],
+                    backgroundColor: 'green',
+                    borderColor: 'green',
+                    borderWidth: 1
+				}]
+			},
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+		});
+    });
+	
+</script>
+{% endblock content %}
+
+

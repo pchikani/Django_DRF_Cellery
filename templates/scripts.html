@@ -1,0 +1,83 @@
+{% load static %}
+  
+<script type="text/javascript" src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+<!-- Initializations -->
+<script type="text/javascript">
+  // Animations initialization
+  new WOW().init();
+
+</script>
+<script type="text/javascript">
+	setInterval(function() {
+		$.ajax({
+			url: '{% url 'core:refreshdata' %}',
+			success: function(data) {
+				$('#portfolioDetails').html(data);
+				
+				// call redirect
+				//function2();
+			}
+		});
+	}, 12000)
+	
+function function2(){
+	$.ajax({
+		url: '/',
+		sucess: function(data){
+			$('test').html(data);
+		}
+	});
+}
+	
+</script>
+
+<script type="text/javascript">
+	function getVals(){
+        var dropdown = document.getElementById("name");
+        var selection = dropdown.value;
+		var textQuantity = document.getElementById("quantity");
+		var textPrice = document.getElementById("price");
+        {% for item in removeobject %}
+			if("{{ item.scripename }}" == selection){
+				textQuantity.value = "{{ item.quantity }}";
+				textPrice.value = "{{ item.curprice }}";
+			}
+			
+		{% endfor %}
+    }
+	  
+	function addVals(){
+        var dropdown = document.getElementById("name");
+        var selection = dropdown.value;
+		var textQuantity = document.getElementById("quantity");
+		var textPrice = document.getElementById("price");
+        {% for item in addobject %}
+		console.log("{{ item.scripename }}");
+			if("{{ item.scripename }}" == selection){
+				console.log("{{ item.currprice }}");
+				textPrice.value = "{{ item.currprice }}";
+			}
+			
+		{% endfor %}
+    }
+</script>
+
+<script type="text/javascript">
+
+$(document).ready(function () {
+
+window.setTimeout(function() {
+    $(".alert").fadeTo(1000, 0).slideUp(1000, function(){
+        $(this).remove();
+    });
+}, 5000);
+
+});
+
+</script>

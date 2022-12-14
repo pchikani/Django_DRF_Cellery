@@ -1,0 +1,13 @@
+					<tr>
+						<th class="col-2"><strong>Total</strong></th>
+						<th class="col-1" style="text-align:right;"></th>
+						<th class="col-1" style="text-align:right;"></th>
+						<th class="col-2" style="text-align:right;"></th>
+						<th class="col-2" style="text-align:right;"><strong>{{ totalInvestmentAmount }}</strong></th>
+						<th class="col-2" style="text-align:right;"><strong>{{ totalCurrentAmount }}</strong></th>
+						{% if totalProfitLoss > 0 %}
+						<th class="col-2" style="text-align:right; color:#00FF00"><strong>{{ totalProfitLoss }} ({{ totalPercentage }}) </strong></th>
+						{% else %}
+						<th class="col-2" style="text-align:right; color:red"><strong>{{ totalProfitLoss }} ({{ totalPercentage }})</strong></th>
+						{% endif %}
+					</tr>

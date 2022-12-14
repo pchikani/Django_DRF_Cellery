@@ -1,0 +1,110 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>MyPortfolio - Learn crypto trading by creating your portfolio</title>
+  <meta name="description" property="og:description" content="This site provides user to create portfolio for learning the crypto trading and scripe movement">
+  <meta name="keywords" content="crypto, portfolio, BTC, learn">
+  
+  {% block extra_head %}
+  {% endblock %}
+  <link rel="icon" href="{% static 'img/favicon.png'%}">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/style.min.css' %}" rel="stylesheet">
+  <style type="text/css">
+    html,
+    body,
+    header,
+    .carousel {
+      height: 60vh;
+    }
+
+    @media (max-width: 740px) {
+
+      html,
+      body,
+      header,
+      .carousel {
+        height: 100vh;
+      }
+    }
+
+    @media (min-width: 800px) and (max-width: 850px) {
+
+      html,
+      body,
+      header,
+      .carousel {
+        height: 100vh;
+      }
+    }
+	
+	.form-control:focus {
+		border-color:#80ff82;
+		box-shadow: 0 0 0 0.2rem rgba(0,255,0,0.3);
+	}
+	
+	.md-form input:focus { 
+		border-bottom: 1px solid green !important; 
+		box-shadow: 0 1px 0 0 #28a745 !important;
+		text-color: #28a745
+	}
+	.md-form textarea:focus { 
+		border-bottom: 1px solid green !important; 
+		box-shadow: 0 1px 0 0 #28a745 !important;
+		text-color: #28a745
+	}
+	
+	.md-form textarea[type=text]:focus:not([readonly]) + label 
+	{
+		color: #28a745; 
+	}
+	
+	.md-form input[type=text]:focus:not([readonly]) + label
+	{
+		color: #28a745;
+	}
+	
+  </style>
+</head>
+
+{% include "navbar.html" %}
+
+
+<body>
+    {% if messages %}
+	
+	{% url 'core:home' as my_view %}
+	{% if request.path == my_view %}
+
+	{% else %}
+        {% for message in messages %}
+			<div class="alert alert-{{ message.tags }} alert-dismissible fade show mt-5 pt-2" role="alert">
+				{{ message }}
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+        {% endfor %}
+	{% endif %}
+	
+    {% endif %}
+    {% block content %}
+    {% endblock content %}
+
+    {% block extra_body %}
+    {% endblock %}
+
+	{% include "footer.html" %}
+    {% include "scripts.html" %}
+
+    {% block extra_scripts %}
+    {% endblock extra_scripts %}
+</body>
+</html>

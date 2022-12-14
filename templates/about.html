@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container pt-5 mt-5">
+		<h1 class="h1-responsive pb-5">Welcome to MyPortfolio</h1>
+		<div class="row">
+				<div class="col-md-8 col-xs-8">
+					
+					<div class="row">
+						<div class="col-md-2 col-xs-2">
+							<i class="fa fa-laptop" style="font-size:48px;color:green"></i>
+						</div>
+						<div class="col-md-10 col-xs-10">
+							<p align="justify w-responsive mx-auto" >At LearnPortfolio.online, we provide a platform for new investors in crypto currency market to create dummy portfolio. Here investors 
+							can learn crypto trends and market before actual investments. Add the crypto to your portfolio with amount you would actually wanted to 
+							invest and track the price movement.
+							</p>
+						</div>
+					</div>
+					<div class="row pt-2">
+						<div class="col-md-2 col-xs-2">
+							<i class='fas fa-chart-pie' style='font-size:48px;color:green'></i>
+						</div>
+						<div class="col-md-10 col-xs-10">
+							<p align="justify w-responsive mx-auto">
+								We provide charts & reports that would provide data for new investors to learn the actual price movement. Portfolio holdings report and 
+								trade reports provide insight into target investment goals.	
+							</p>
+						</div>
+					</div>
+					<div class="row pt-2">
+						<div class="col-md-2 col-xs-2">
+							<i class='fas fa-link' style='font-size:48px;color:green'></i>
+						</div>
+						<div class="col-md-10 col-xs-10">
+							<p align="justify w-responsive mx-auto">
+								In addition to web platform, with API integration mobile application for users would be added soon, an extensive user friendly application
+								which would be convenient to use and learn.
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 col-xs-4">
+					<img src="{% static 'img/cryptocurrency.jpg'%}" class="rounded img-responsive" style="width:100%"/> 
+				</div>
+		</div>
+    </div>
+
+{% endblock content %}

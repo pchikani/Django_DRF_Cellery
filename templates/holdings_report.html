@@ -1,0 +1,83 @@
+    {% load static %}
+	
+	<div class="container">
+		<div class="table-responsive-md">
+			<table class="table table-sm">
+				<thead>
+					<tr>
+						<th style="padding:0px;"><img src="static_root/img/favicon.png" height="30" width="30" alt="blah" /></th>
+						<th style="text-align:left; padding-top:5px;"><h1>MyPortfolio</h1></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<p>________________________________________________________________________________________________________________________________</p>
+		<p style="text-align:right;">Date: {% now "jS F Y" %}</p>
+		<h1 style="text-align:center;"><strong>Portfolio Holdings Report</strong></h1>
+		
+		<p class="padding:0px">Name: {{ firstName}} {{ lastName }}</p>
+		<p class="padding:0px">Email: {{ email }}</p>
+		
+		<div class="table-responsive-md">
+			<table class="table table-bordered table-sm">
+				<thead>
+					<tr style="background-color:#8FBC8F;">
+						<th class="col-2" style="text-align:left; padding-top:3px; font-size:11px;">Scripe Name</th>
+						<th class="col-1" style="text-align:right; padding-top:3px; font-size:11px;">LTP</th>
+						<th class="col-1" style="text-align:right; padding-top:3px; font-size:11px;">Qty</th>
+						<th class="col-2" style="text-align:right; padding-top:3px; font-size:11px;">Buy Price</th>
+						<th class="col-2" style="text-align:right; padding-top:3px; font-size:11px;">Invested Amount</th>
+						<th class="col-2" style="text-align:right; padding-top:3px; font-size:11px;">Current Amount</th>
+						<th class="col-2" style="text-align:right; padding-top:3px; font-size:11px;">Profit/Loss</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr></tr>
+					{% for item in object %}
+					<tr>
+						<td class="col-2" style="text-align:left;">{{ item.scripename }}</td>
+						<td class="col-1" style="text-align:right;">{{ item.scripename.currprice }}</td>
+						<td class="col-1" style="text-align:right;">{{ item.quantity }}</td>
+						<td class="col-2" style="text-align:right;">{{ item.buyprice }}</td>
+						<td class="col-2" style="text-align:right;">{{ item.investmentvalue }}</td>
+						<td class="col-2" style="text-align:right;">{{ item.curvalue }}</td>
+						{% if item.profitloss > 0 %}
+						<td class="col-2" style="text-align:right;">{{ item.profitloss }}({{ item.percentage }})</td>
+						{% else %}
+						<td class="col-2" style="text-align:right; color:red">{{ item.profitloss }}({{ item.percentage }})</td>
+						{% endif %}
+					</tr>
+					{% endfor %}
+					<tr></tr>
+					<tr style="background-color:#8FBC8F;">
+						<td class="col-2" style="text-align:left; padding-top:3px; font-size:11px;"><strong>Total</strong></td>
+						<td class="col-1" style="text-align:right; padding-top:3px; font-size:11px;"></td>
+						<td class="col-1" style="text-align:right; padding-top:3px; font-size:11px;"></td>
+						<td class="col-2" style="text-align:right; padding-top:3px; font-size:11px;"></td>
+						<td class="col-2" style="text-align:right; padding-top:3px; font-size:11px;"><strong>{{ totalInvestmentAmount }}</strong></td>
+						<td class="col-2" style="text-align:right; padding-top:3px; font-size:11px;"><strong>{{ totalCurrentAmount }}</strong></td>
+						{% if totalProfitLoss > 0 %}
+						<td class="col-2" style="text-align:right; padding-top:3px; font-size:11px;"><strong>{{ totalProfitLoss }} ({{ totalPercentage }}) </strong></td>
+						{% else %}
+						<td class="col-2" style="text-align:right; color:red ;padding-top:3px; font-size:11px;"><strong>{{ totalProfitLoss }} ({{ totalPercentage }})</strong></td>
+						{% endif %}
+					</tr>
+				</tbody>
+			</table>
+			</div>
+			<p style="text-align:center;">End of Report</p>
+    </div>
+
+

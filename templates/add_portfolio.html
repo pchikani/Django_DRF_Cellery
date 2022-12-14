@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <main>
+    <div class="container">
+		<section class="mb-4 pt-5">
+			<!--Section heading-->
+			<h3 class="h4-responsive font-weight-bold text-center text-white my-4 p-1 bg-success">Add to Portfolio</h3>
+			<!--Section description-->
+			
+			<div class="row">
+
+				<!--Grid column-->
+				<div class="col-md-9 mb-md-0 mb-5">
+				
+					<form id="contact-form" name="contact-form" action="/addportfolio/" method="POST">
+					{% csrf_token %}
+						<!--Grid row-->
+						<div class="row pb-2">
+
+							<!--Grid column-->
+							<div class="col-md-3">
+								<div class="">
+									<label for="name" class="">Scripe Name</label>
+									<select id="name" name="name" class="form-control" onchange="addVals()">
+										<option></option>
+										{% for item in addobject.all %}
+										<option>{{ item.scripename }}</option>
+										{% endfor %}
+									</select>
+								</div>
+							</div>
+							<!--Grid column-->
+
+						</div>
+						<!--Grid row-->
+
+						<!--Grid row-->
+						<div class="row pb-2">
+							<div class="col-md-3">
+								<div class="">
+									<label for="price" class="">Scripe Price</label>
+									<input type="text" id="price" name="price" class="form-control">									
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="">
+									<label for="quantity" class="">Scripe Quantity</label>
+									<input type="text" id="quantity" name="quantity" class="form-control">									
+								</div>
+							</div>
+						</div>
+						<!--Grid row-->
+
+
+					</form>
+
+					<div class="text-center text-md-left">
+						<a class="btn btn-success" onclick="document.getElementById('contact-form').submit();">Add</a>
+						<a class="btn btn-success" href="/home/">Back</a>
+					</div>
+					<div class="status"></div>
+				</div>
+				<!--Grid column-->
+
+			</div>
+
+		</section>
+	<!--Section: Contact v.2-->
+
+    </div>
+  </main>
+
+{% endblock content %}
+
+

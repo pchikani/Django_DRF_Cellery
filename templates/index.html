@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block extra_head %}
+
+{% endblock extra_head %}
+
+
+{% block content %}
+  
+ <div class="d-flex flex-column min-vh-100">
+
+    <main class="flex-fill">
+	<!--DisplayPortfolio-->
+		<div class="container pt-5 mt-4">
+			<p><strong>Crypto Market</strong></p>
+			<div class="row">
+				<div class="col-4">
+					<div class="table-responsive-md">
+						<table class="table table-striped table-sm p-0 m-0" >
+							<thead>
+								<tr class="table-success">
+									<th><strong>Trending</strong></th>
+								</tr>
+							</thead>
+						</table>
+						<table class="table table-striped table-sm p-0 m-0">
+							<thead>
+								<tr class="table-success">
+									<th>Scripe Name</th>
+									<th style="text-align:right;">Volume</th>
+								</tr>
+							</thead>
+							<tbody id="">
+							{% for item in object.all|dictsortreversed:"volume"|slice:":3"  %}
+								<tr>
+									<td>{{ item.scripename }}</td>
+									<td style="text-align:right;">{{ item.volume }}</td>
+								</tr>
+							{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="col-8">
+					<div class="table-responsive-md">
+						<table class="table table-striped table-sm" >
+							<thead>
+								<tr class="table-success">
+									<th class="col-2">Scripe Name</th>
+									<th class="col-1" style="text-align:right;">Open</th>
+									<th class="col-1" style="text-align:right;">High</th>
+									<th class="col-1" style="text-align:right;">Low</th>
+									<th class="col-1" style="text-align:right;">Close</th>
+									<th class="col-1" style="text-align:right;">Volume</th>
+								</tr>
+							</thead>
+							<tbody id="">
+							{% for item in object.all %}
+								<tr>
+									<td class="col-2">{{ item.scripename }}</td>
+									<td class="col-1" style="text-align:right;">{{ item.currprice }}</td>
+									<td class="col-1" style="text-align:right;">{{ item.highprice }}</td>
+									<td class="col-1" style="text-align:right;">{{ item.lowprice }}</td>
+									<td class="col-1" style="text-align:right;">{{ item.closeprice }}</td>
+									<td class="col-1" style="text-align:right;">{{ item.volume }}</td>
+								</tr>
+							{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>			
+		</div>		  
+		<!--/DisplayPortfolio--> 
+
+
+    </main>
+</div>
+
+{% endblock content %}
+
+

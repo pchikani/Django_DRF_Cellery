@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <main>
+    <div class="container pt-4">
+		<div class="row bg-success h4-responsive my-4 font-weight-bold text-center text-white">
+			<a class="btn btn-success p-1 m-1" href="/home/">Back</a>
+			<div class="col">Scripe Trade Details</div>
+		</div>
+		<div class="row bg-success">
+			<div class="col">
+			  <strong>Scripe Name</strong>
+			</div>
+			<div class="col">
+			  <strong>Buy / Sell</strong>
+			</div>
+			<div class="col">
+				<strong>Price</strong>
+			</div>
+			<div class="col">
+				<strong>Quantity</strong>
+			</div>
+			<div class="col">
+				<strong>Trade Date</strong>
+			</div>
+		</div>
+		
+		{% for item in object %}
+		<div class="row">
+			<div class="col">
+				{{ item.scripename }}
+			</div>
+			<div class="col">
+				{{ item.buysell }}
+			</div>
+			<div class="col">
+				{{ item.buyprice }}
+			</div>
+			<div class="col">
+				{{ item.quantity }}
+			</div>
+			<div class="col">
+				{{ item.timestamp.date }}
+			</div>
+		</div>
+		{% endfor %}
+
+    </div>
+  </main>
+
+{% endblock content %}
+
+
